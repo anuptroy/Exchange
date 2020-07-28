@@ -1,0 +1,123 @@
+NOTE:
+Pre Requisite were installed initially successfully then setup  file
+
+https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2019
+
+Add-PSSnapin *exchange*
+
+Install-WindowsFeature NET-Framework-45-Features, Server-Media-Foundation, RPC-over-HTTP-proxy, RSAT-Clustering, RSAT-Clustering-CmdInterface, RSAT-Clustering-Mgmt, RSAT-Clustering-PowerShell, WAS-Process-Model, Web-Asp-Net45, Web-Basic-Auth, Web-Client-Auth, Web-Digest-Auth, Web-Dir-Browsing, Web-Dyn-Compression, Web-Http-Errors, Web-Http-Logging, Web-Http-Redirect, Web-Http-Tracing, Web-ISAPI-Ext, Web-ISAPI-Filter, Web-Lgcy-Mgmt-Console, Web-Metabase, Web-Mgmt-Console, Web-Mgmt-Service, Web-Net-Ext45, Web-Request-Monitor, Web-Server, Web-Stat-Compression, Web-Static-Content, Web-Windows-Auth, Web-WMI, Windows-Identity-Foundation, RSAT-ADDS
+
+Error:
+This computer requires .NET Framework 4.7.1 (https://support.microsoft.com/kb/4033342).
+For more information, visit: http://technet.microsoft.com/library(EXCHG.150)/ms.exch.setupreadiness.MinimumFrameworkNotInstalled.aspx
+
+Error:
+There is a pending reboot from a previous installation of a Windows Server role or feature. Please restart the computer and then run Setup again.
+For more information, visit: http://technet.microsoft.com/library(EXCHG.150)/ms.exch.setupreadiness.PendingRebootWindowsComponents.aspx
+
+Warning:
+MAPI over HTTP, the preferred Outlook desktop client connectivity with Exchange server, is currently not enabled. Consider enabling it using: Set-OrganizationConfig -MapiHttpEnabled $true
+For more information, visit: http://technet.microsoft.com/library(EXCHG.150)/ms.exch.setupreadiness.WarnMapiHttpNotEnabled.aspx
+
+==================
+
+ERROR IN GUI
+
+Error on exc2016A:
+Step 7
+Error:
+The following error was generated when "$error.Clear(); 
+          if ( ($server -eq $null) -and ($RoleIsDatacenter -ne $true) )
+          {
+            Update-RmsSharedIdentity -ServerName $RoleNetBIOSName
+          }
+        " was run: "Microsoft.Exchange.Management.Tasks.RmsSharedIdentityUserNotFoundException: RMS Shared Identity user FederatedEmail.4c1f4d8b-8179-4148-93bf-00a95fa1e042 not found.
+   at Microsoft.Exchange.Configuration.Tasks.Task.ThrowError(Exception exception, ErrorCategory errorCategory, Object target, String helpUrl)
+   at Microsoft.Exchange.Configuration.Tasks.Task.WriteError(Exception exception, ErrorCategory category, Object target, Boolean reThrow)
+   at Microsoft.Exchange.Management.Deployment.UpdateRmsSharedIdentity.Link()
+   at Microsoft.Exchange.Management.Deployment.UpdateRmsSharedIdentity.InternalProcessRecord()
+   at Microsoft.Exchange.Configuration.Tasks.Task.<ProcessRecord>b__91_1()
+   at Microsoft.Exchange.Configuration.Tasks.Task.InvokeRetryableFunc(String funcName, Action func, Boolean terminatePipelineIfFailed)".
+
+
+----
+
+ERROR IN LOGS
+[04/09/2020 05:12:02.0015] [2] [ERROR] RMS Shared Identity user FederatedEmail.4c1f4d8b-8179-4148-93bf-00a95fa1e042 not found.
+[04/09/2020 05:12:02.0015] [2] [ERROR] RMS Shared Identity user FederatedEmail.4c1f4d8b-8179-4148-93bf-00a95fa1e042 not found.
+[04/09/2020 05:12:02.0015] [2] Ending processing Update-RmsSharedIdentity
+[04/09/2020 05:12:02.0015] [1] The following 1 error(s) occurred during task execution:
+[04/09/2020 05:12:02.0015] [1] 0.  ErrorRecord: RMS Shared Identity user FederatedEmail.4c1f4d8b-8179-4148-93bf-00a95fa1e042 not found.
+[04/09/2020 05:12:02.0015] [1] 0.  ErrorRecord: Microsoft.Exchange.Management.Tasks.RmsSharedIdentityUserNotFoundException: RMS Shared Identity user FederatedEmail.4c1f4d8b-8179-4148-93bf-00a95fa1e042 not found.
+   at Microsoft.Exchange.Configuration.Tasks.Task.ThrowError(Exception exception, ErrorCategory errorCategory, Object target, String helpUrl)
+   at Microsoft.Exchange.Configuration.Tasks.Task.WriteError(Exception exception, ErrorCategory category, Object target, Boolean reThrow)
+   at Microsoft.Exchange.Management.Deployment.UpdateRmsSharedIdentity.Link()
+   at Microsoft.Exchange.Management.Deployment.UpdateRmsSharedIdentity.InternalProcessRecord()
+   at Microsoft.Exchange.Configuration.Tasks.Task.<ProcessRecord>b__91_1()
+   at Microsoft.Exchange.Configuration.Tasks.Task.InvokeRetryableFunc(String funcName, Action func, Boolean terminatePipelineIfFailed)
+[04/09/2020 05:12:02.0030] [1] [ERROR] The following error was generated when "$error.Clear(); 
+          if ( ($server -eq $null) -and ($RoleIsDatacenter -ne $true) )
+          {
+            Update-RmsSharedIdentity -ServerName $RoleNetBIOSName
+          }
+        " was run: "Microsoft.Exchange.Management.Tasks.RmsSharedIdentityUserNotFoundException: RMS Shared Identity user FederatedEmail.4c1f4d8b-8179-4148-93bf-00a95fa1e042 not found.
+   at Microsoft.Exchange.Configuration.Tasks.Task.ThrowError(Exception exception, ErrorCategory errorCategory, Object target, String helpUrl)
+   at Microsoft.Exchange.Configuration.Tasks.Task.WriteError(Exception exception, ErrorCategory category, Object target, Boolean reThrow)
+   at Microsoft.Exchange.Management.Deployment.UpdateRmsSharedIdentity.Link()
+   at Microsoft.Exchange.Management.Deployment.UpdateRmsSharedIdentity.InternalProcessRecord()
+   at Microsoft.Exchange.Configuration.Tasks.Task.<ProcessRecord>b__91_1()
+   at Microsoft.Exchange.Configuration.Tasks.Task.InvokeRetryableFunc(String funcName, Action func, Boolean terminatePipelineIfFailed)".
+[04/09/2020 05:12:02.0030] [1] [ERROR] RMS Shared Identity user FederatedEmail.4c1f4d8b-8179-4148-93bf-00a95fa1e042 not found.
+[04/09/2020 05:12:02.0030] [1] [ERROR-REFERENCE] Id=ProvisionServerComponent___cff4878349854618beeb2c9e17cc5214 Component=EXCHANGE14:\Current\Release\Shared\Datacenter\Setup
+[04/09/2020 05:12:02.0030] [1] Setup is stopping now because of one or more critical errors.
+
+
+
+
+
+ERROR IN POWERSHELL COMMAND
+
+PS E:\> setup /Mode:Install /Role:Mailbox /IAcceptExchangeServerLicenseTerms /targetdir: "C:\Program Files\Microsoft\Exchange Server"
+
+Microsoft Exchange Server 2016 Cumulative Update 11 Unattended Setup
+
+Languages
+Mailbox role: Transport service
+Mailbox role: Client Access service
+Mailbox role: Unified Messaging service
+Mailbox role: Mailbox service
+Mailbox role: Front End Transport service
+Mailbox role: Client Access Front End service
+The target directory was specified but cannot be changed.
+File exchangeserver.msi does not exist in specified directory C:\Program Files\Microsoft\Exchange Server\V15\bin.
+
+The Exchange Server setup operation didn't complete. More details can be found in ExchangeSetup.log located in the
+<SystemDrive>:\ExchangeSetupLogs folder.
+PS E:\> setup.exe /mode:Upgrade /IAcceptExchangeServerLicenseTerms
+
+
+
+ERROR Under the latest Logs Find the Following:
+
+[ERROR] File exchangeserver.msi does not exist in specified directory C:\Program Files\Microsoft\Exchange Server\V15\bin.
+
+
+***********************************************************Solution:*********************
+
+On Exchange Server where issue occurs for  the above error:
+
+Click on Windows  > Run > REGEDIT
+
+Computer\HKLM\Software\Microsoft\ExchangeServer\v15\HubTransportRole\
+
+There was Watermark and install File
+
+Delete both the files
+
+Come back to Exchange server Setup Location:
+
+Click in EXCHANGE SERVER Windows Installer > Install it 
+Then Proceed with Setup.exe 
+
+Now it got succeeded 
+
