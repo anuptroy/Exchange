@@ -1,0 +1,27 @@
+In Exchange if you need to add multiple Members in a Specific Distribution Group then kindly run the first line of powershell command.
+
+Save all users in text format to a specific location.
+
+After saving it then provide details and execute first command.
+1. Get-Content "C:\Users\Anup\Desktop\EMEAFieldEngineers.txt" | Add-DistributionGroupMember "EMEA Field Engineers"
+As per the number of user it will take som time to complte its execution.
+
+In order to verify No of Member s count in Distributed Group then perform Second Command
+2. (Get-DistributionGroupMember "EMEA Field Engineers").Count
+
+
+#######################################
+
+Get-Content "C:\Users\Anup\Desktop\EMEAFieldEngineers.txt" | Add-DistributionGroupMember "EMEA Field Engineers"
+
+(Get-DistributionGroupMember "EMEA Field Engineers").Count
+
+
+Ref, Links:
+
+
+https://serverfault.com/questions/316558/powershell-2-add-multiple-members-to-distribution-group-with-one-call
+
+
+https://practical365.com/exchange-server/get-distribution-group-member-counts-with-powershell/
+
