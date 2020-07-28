@@ -1,0 +1,44 @@
+SOL 1
+
+$Password=Read-Host “Enter Password” –AsSecureString
+
+From <https://www.itprotoday.com/email-and-calendaring/powershell-create-exchange-server-2016-mailboxes-bulk> 
+
+
+Import-CSV .\as\adm.csv | ForEach {New-Mailbox -Name $_.name -firstname $_.firstname -lastname $_.lastname -userPrincipalName $_.userprincipalname -OrganizationalUnit Users -Password $Password
+
+From <https://www.itprotoday.com/email-and-calendaring/powershell-create-exchange-server-2016-mailboxes-bulk> 
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+SOL 2
+
+
+SUCCESS:
+
+#Initially run Below Command and enter the desirable password which you need by default and take it as in variable
+$password=Read-Host "Enter Password" -AsSecureString
+
+#Below is the main command which does the reset of magic
+Import-CSV .\location\file.csv | ForEach {New-Mailbox -Name $.name -Alias $.alias -userPrincipalName $.UPN -OrganizationalUnit $."Users" -Password $Password -Verbose}
+
+
+
+#############################################################################
+
+SOL3
+
+$pass = ConvertTo-SecureString -AsPlainText P@ssw0rd01 `
+-Force
+4.
+Import the CSV file and create the mailboxes:
+Import-CSV C:\mailboxes1.csv | % {
+New-Mailbox -Name $_.Name `
+-Alias $_.Alias `
+-UserPrincipalName $_.UserPrincipalName `
+-OrganizationalUnit $_.OrganizationalUnit `
+-Password $pass `
+-ResetPasswordOnNextLogon $true
+}
+
+From <https://manualzz.com/viewer_next/web/manual?file=%2F%2Fs1.manualzz.com%2Fstore%2Fdata%2F047330062.pdf%3Fkey%3Df535e01a6521f2c0bb5a833253ba9a24%26r%3D1%26fn%3D47330062.pdf%26t%3D1591312014668%26p%3D600%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20&ads=true> 
