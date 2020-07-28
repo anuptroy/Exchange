@@ -1,0 +1,22 @@
+STATUS: SOLVED
+
+Fix 1 – Kill All Outlook Related Processes
+	1. Right-click the task bar and select “Task Manager“, or press CTRL + ALT + Delete, then choose “Task Manager“.
+	2. Select the “Processes” tab.
+	3. Look for anything named “Communicator“, “Lync“, “ucmapi” or “Outlook“. If you find any items related to these, select it, then select the “End task” button.
+
+Fix 2 – Restart Computer
+Rather than spend all day trying to figure out the process that is hogging the file, try just doing a simple computer restart. Select “Start” > “Restart“.
+
+Fix 3 – Disable Cached Exchange Mode
+	1. Close Outlook.
+	2. Open “Control Panel” and select “Mail“.
+	3. Select the “Email Accounts” button.
+	4. Choose the “Email” tab.
+	5. Highlight the email address giving you the warning (email.ost), then select “Change“.
+	6. Uncheck “Use Cached Exchanged Mode“.
+	7. Select “Next” then “Finish“.
+
+From <https://www.technipages.com/outlook-solve-the-file-username-ost-is-in-use-and-cannot-be-accessed-error/comment-page-1?unapproved=946183&moderation-hash=fefbbda6ba3c6065b3f23d21b717220d> 
+
+STATUS: SOLVED
