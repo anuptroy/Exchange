@@ -1,0 +1,90 @@
+ACTUAL WORKING AND BEST STEP BY STEP IS GIVEN BELOW
+
+PS E:\> .\Setup.EXE /IAcceptExchangeServerLicenseTerms /PrepareAD /OrganizationName:Excis
+
+Microsoft Exchange Server 2016 Cumulative Update 11 Unattended Setup
+
+Copying Files...
+File copy complete. Setup will now collect additional information needed for installation.
+
+
+Performing Microsoft Exchange Server Prerequisite Check
+
+    Prerequisite Analysis                                                                             100%
+
+Setup will prepare the organization for Exchange Server 2016 by using 'Setup /PrepareAD'. No Exchange Server 2013 roles
+have been detected in this topology. After this operation, you will not be able to install any Exchange Server 2013
+roles.
+For more information, visit: http://technet.microsoft.com/library(EXCHG.150)/ms.exch.setupreadiness.NoE15ServerWarning.a
+spx
+
+Setup will prepare the organization for Exchange Server 2016 by using 'Setup /PrepareAD'. No Exchange Server 2010 roles
+have been detected in this topology. After this operation, you will not be able to install any Exchange Server 2010
+roles.
+For more information, visit: http://technet.microsoft.com/library(EXCHG.150)/ms.exch.setupreadiness.NoE14ServerWarning.a
+spx
+
+
+Configuring Microsoft Exchange Server
+
+    Organization Preparation                                                                          COMPLETED
+
+The Exchange Server setup operation completed successfully.
+
+==================
+
+
+ .\Setup.EXE /IAcceptExchangeServerLicenseTerms /PrepareAD /OrganizationName:Excis
+
+ .\setup.exe /PrepareAllDomains /IAcceptExchangeServerLicenseTerms
+
+.\setup.exe /Prepareschema /IAcceptExchangeServerLicenseTerms
+
+.\Setup.exe /m:install /r:ClientAccess,Mailbox /IAcceptExchangeServerLicenseTerms
+
+
+Error:
+This computer requires the update described in Microsoft Knowledge Base article KB3206632 (http://support.microsoft.com/kb/3206632). Without this update, Exchange Server 2016 will not work reliably on Windows Server 2016.
+For more information, visit: http://technet.microsoft.com/library(EXCHG.150)/ms.exch.setupreadiness.Win2k16LSARollupUpdateNotInstalled.aspx
+
+
+$$$$$##################################
+
+FOLLOW BELOW STEPS BY STEPS FOR INSTALLATION
+
+-Before you begin make sure your Windows Server 2016 OS is updated
+
+Install-WindowsFeature NET-Framework-45-Features, Server-Media-Foundation, RPC-over-HTTP-proxy, RSAT-Clustering, RSAT-Clustering-CmdInterface, RSAT-Clustering-Mgmt, RSAT-Clustering-PowerShell, WAS-Process-Model, Web-Asp-Net45, Web-Basic-Auth, Web-Client-Auth, Web-Digest-Auth, Web-Dir-Browsing, Web-Dyn-Compression, Web-Http-Errors, Web-Http-Logging, Web-Http-Redirect, Web-Http-Tracing, Web-ISAPI-Ext, Web-ISAPI-Filter, Web-Lgcy-Mgmt-Console, Web-Metabase, Web-Mgmt-Console, Web-Mgmt-Service, Web-Net-Ext45, Web-Request-Monitor, Web-Server, Web-Stat-Compression, Web-Static-Content, Web-Windows-Auth, Web-WMI, Windows-Identity-Foundation, RSAT-ADDS
+
+GUI APPS:
+a. .NET Framework 4.8
+b. Microsoft Knowledge Base article KB3206632
+c. Visual C++ Redistributable Package for Visual Studio 2012
+d. Visual C++ Redistributable Package for Visual Studio 2013
+e. Microsoft Unified Communications Managed API 4.0, Core Runtime 64-bit
+
+Install-WindowsFeature RSAT-ADDS
+
+(Get-ADForest).SchemaMaster
+
+Install exchangeserevr.exe from setup
+
+"Exchange Schema Version = " + ([ADSI]("LDAP://CN=ms-Exch-Schema-Version-Pt," + ([ADSI]"LDAP://RootDSE").schemaNamingContext)).rangeUpper
+
+.\setup.exe /PrepareSchema /IAcceptExchangeServerLicenseTerms
+
+"Exchange Schema Version = " + ([ADSI]("LDAP://CN=ms-Exch-Schema-Version-Pt," + ([ADSI]"LDAP://RootDSE").schemaNamingContext)).rangeUpper
+
+.\setup.exe /PrepareAD /OrganizationName:"Exchange Lab" /IAcceptExchangeServerLicenseTerms
+
+.\setup.exe /PrepareAD /IAcceptExchangeServerLicenseTerms
+
+.\setup.exe /PrepareAD /OrganizationName:"Exchange Lab" /IAcceptExchangeServerLicenseTerms
+
+.\setup.exe /Mode:Install /Role:Mailbox /IAcceptExchangeServerLicenseTerms
+
+Restart Server
+
+Done
+
+
